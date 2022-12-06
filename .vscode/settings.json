@@ -1,0 +1,10 @@
+{
+    "python.linting.pylintArgs": [
+        "--disable=C0111",
+        "--load-plugins=pylint_django",
+        "--django-settings-module=commerce.settings",
+    ],
+    "python.linting.pylintEnabled": true,
+    "editor.fontFamily": "'JetBrain Mono', 'monospace', monospace",
+    "editor.fontLigatures": true
+}
