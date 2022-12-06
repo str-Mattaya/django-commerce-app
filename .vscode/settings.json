@@ -5,6 +5,6 @@
         "--django-settings-module=commerce.settings",
     ],
     "python.linting.pylintEnabled": true,
-    "editor.fontFamily": "'JetBrain Mono', 'monospace', monospace",
+    "editor.fontFamily": "'JetBrains Mono', 'monospace', monospace",
     "editor.fontLigatures": true
 }

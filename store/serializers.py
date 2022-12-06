@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from store.models import Customer, Product
+from store.models import *
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
@@ -27,6 +27,9 @@ class LoginSerializer(serializers.ModelSerializer):
 
 
 class CustomerSerializer(serializers.ModelSerializer):
+
+    username = serializers.CharField(read_only=True)
+
     class Meta:
         model = Customer
         fields = ['username', 'name', 'gender', 'phone_number', 'address', 'profile_image']
@@ -36,3 +39,9 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = ['id', 'name', 'price', 'description', 'description', 'image']
+
+
+class CartItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CartItem
+        fields = ['id', 'customer', 'product', 'amount']

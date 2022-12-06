@@ -53,6 +53,7 @@ class CartItem(models.Model):
     ]
 
     status = models.CharField(max_length=10, default='waiting', choices=CART_CHOICES)
+    timestamp = models.DateTimeField(auto_now_add=True)
     slip = models.FileField(null=True, blank=True)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='carts')
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True, related_name='carts')
