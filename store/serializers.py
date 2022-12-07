@@ -1,4 +1,6 @@
 from rest_framework import serializers
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from django.contrib.auth.models import update_last_login
 
 from store.models import *
 
@@ -45,3 +47,21 @@ class CartItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = CartItem
         fields = ['id', 'customer', 'product', 'amount']
+
+
+class LoginTokenSerializer(TokenObtainPairSerializer):
+    
+    def validate(self, attrs):
+        data = super().validate(attrs)
+
+        refresh = self.get_token(self.user)
+
+        data.pop("refresh")
+        data["access"] = str(refresh.access_token)
+        data["username"] = self.user.get_username()
+        
+        update_last_login(None, self.user)
+        return data
+    
+    class Meta:
+        fields = ['access', 'username']
